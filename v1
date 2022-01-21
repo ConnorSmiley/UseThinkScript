@@ -1,0 +1,4 @@
+def SMA200 = SimpleMovingAvg(price=close, length=200);
+def SMA20 = SimpleMovingAvg(price=close, length=20);
+
+plot scan = if SMA200 crosses above SMA20 then 1 else 0;
