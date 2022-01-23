@@ -1,0 +1,24 @@
+declare lower;
+
+input length = 14;
+input averageType = AverageType.WILDERS;
+
+def hiDiff = high - high[1];
+def loDiff = low[1] - low;
+
+def plusDM = if hiDiff > loDiff and hiDiff > 0 then hiDiff else 0;
+def minusDM = if loDiff > hiDiff and loDiff > 0 then loDiff else 0;
+
+def ATR = MovingAverage(averageType, TrueRange(high, close, low), length);
+plot DIplus = 100 * MovingAverage(averageType, plusDM, length) / ATR;
+plot DIminus = 100 * MovingAverage(averageType, minusDM, length) / ATR;
+
+def DX = if (DIplus + DIminus > 0) then 100 * AbsValue(DIplus - DIminus) / (DIplus + DIminus) else 0;
+plot ADX = MovingAverage(averageType, DX, length);
+
+
+DIplus.SetDefaultColor(GetColor(1));
+DIminus.SetDefaultColor(GetColor(8));
+ADX.SetDefaultColor(GetColor(5));
+
+AddCloud (DIplus, DIminus , Color.GREEN, Color.RED);
