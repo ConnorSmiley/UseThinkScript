@@ -1,0 +1,6 @@
+def volumeincrease = (volume - volume[1]) / volume;
+addlabel( yes, aspercent(round(volumeincrease)), color.white);
+addchartbubble(volumeincrease,low,aspercent(round(volumeincrease)),color.white);
+
+def volalert = volumeincrease > volumeincrease[1];
+Alert(volalert, "volume increase", Sound.Bell;
