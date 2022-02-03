@@ -1,0 +1,8 @@
+#Change price to dollar amount
+def price = 1;
+#Change scanlength to length of scan
+def scanlength = 1;
+def PA = price/ATR("length"=scanlength, "AverageType"="SIMPLE") > 25;
+
+plot scan = PA;
+
