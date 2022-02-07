@@ -1,0 +1,5 @@
+1.
+plot scan = ExpAverage(200) > Vwap and close("priceType" = PriceType.MARK) crosses vwap;
+
+2.
+plot scan = ExpAverage(200) < Vwap and close("priceType" = PriceType.MARK) crosses vwap;
