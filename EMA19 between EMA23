@@ -1,0 +1,5 @@
+def EMA19 = ExpAverage(19);
+def EMA21 = ExpAverage(21);
+def EMA23 = ExpAverage(23);
+
+plot scan = Between(close, EMA19, EMA23);
