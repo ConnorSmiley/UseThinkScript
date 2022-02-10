@@ -1,1 +1,1 @@
-close("period" = AggregationPeriod.MIN, "priceType" = PriceType.MARK) crosses below StandardDevChannel("price" = CLOSE, "deviations" = 2, "length" = 1)."LowerLine"
+plot scan  = close("priceType" = PriceType.MARK) crosses StandardErrorChannel()."LowerBand";
