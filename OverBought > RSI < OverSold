@@ -10,13 +10,14 @@ input showBreakoutSignals = no;
 def NetChgAvg = MovingAverage(averageType, price - price[1], length);
 def TotChgAvg = MovingAverage(averageType, AbsValue(price - price[1]), length);
 def ChgRatio = if TotChgAvg != 0 then NetChgAvg / TotChgAvg else 0;
+def Normal = if RSI > OverSold and RSI < OverSold;
 
 plot RSI = 50 * (ChgRatio + 1);
 plot OverSold = over_Sold;
 plot OverBought = over_Bought;
 plot UpSignal = if RSI crosses above OverSold then OverSold else Double.NaN;
 plot DownSignal = if RSI crosses below OverBought then OverBought else Double.NaN;
-plot Normal = RSI > OverSold and RSI < OverSold;
+plot Normal = if RSI > OverSold and RSI < OverBought;
 
 UpSignal.SetHiding(!showBreakoutSignals);
 DownSignal.SetHiding(!showBreakoutSignals);
@@ -30,5 +31,5 @@ OverBought.SetDefaultColor(GetColor(8));
 UpSignal.SetDefaultColor(Color.UPTICK);
 UpSignal.SetPaintingStrategy(PaintingStrategy.ARROW_UP);
 DownSignal.SetDefaultColor(Color.DOWNTICK);
-DownSignal.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN);
+DownSignal.SetPaintingStrategy(PaintingStrategy.ARROW_DOWN)
 
