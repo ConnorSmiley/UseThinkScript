@@ -10,7 +10,7 @@ input showBreakoutSignals = no;
 def NetChgAvg = MovingAverage(averageType, price - price[1], length);
 def TotChgAvg = MovingAverage(averageType, AbsValue(price - price[1]), length);
 def ChgRatio = if TotChgAvg != 0 then NetChgAvg / TotChgAvg else 0;
-def Normal = if RSI > OverSold and RSI < OverSold;
+def Normal = if RSI > OverSold and RSI < OverBought;
 
 plot RSI = 50 * (ChgRatio + 1);
 plot OverSold = over_Sold;
